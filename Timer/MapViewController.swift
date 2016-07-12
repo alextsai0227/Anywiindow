@@ -109,7 +109,7 @@ class MapViewController: UIViewController,MKMapViewDelegate{
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ViewController" {
-            let destinationViewController = segue.destinationViewController as! ViewController
+            let destinationViewController = segue.destinationViewController as! CityViewController
             let place = sender as? CustomPointAnnotation
             destinationViewController.imageName = place!.imageName
             destinationViewController.image = place!.image
@@ -119,8 +119,7 @@ class MapViewController: UIViewController,MKMapViewDelegate{
     }
     // MARK: - SearchTableView
     @IBAction func presentSearchTableView(sender: AnyObject) {
-//        let searchBarTableViewController = storyboard?.instantiateViewControllerWithIdentifier("SearchBarTableViewController") as! SearchBarTableViewController
-//        
+//        let searchBarTableViewController = storyboard?.instantiateViewControllerWithIdentifier("SearchBarTableViewController") as! SearchBarTableViewController        
 //        presentViewController(searchBarTableViewController, animated: true, completion: nil)
         self.performSegueWithIdentifier("ShowSearchTableView", sender: searchButton)
     

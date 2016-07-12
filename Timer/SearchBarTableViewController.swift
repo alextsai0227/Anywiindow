@@ -9,16 +9,17 @@
 import UIKit
 
 class SearchBarTableViewController: UITableViewController {
-//    var places = [Place]()
-        var filteredPlaces = [Place]()
+    var selectedPlace = Place?()
+    var filteredPlaces = [Place]()
     let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         definesPresentationContext = true
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.scopeButtonTitles = ["All", "Asia", "America"]
+//        searchController.searchBar.scopeButtonTitles = ["All", "Asia", "America"]
         tableView.tableHeaderView = searchController.searchBar
         
         
@@ -67,22 +68,29 @@ class SearchBarTableViewController: UITableViewController {
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("did select row")
-            self.performSegueWithIdentifier("GoToViewController", sender: Place.places[indexPath.row])
+            selectedPlace = Place.places[indexPath.row]
         
-        
-    }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "GoToViewController" {
-            let destinationViewController = segue.destinationViewController as! ViewController
-            print(sender)
-            let place = sender as? Place
-//            destinationViewController.imageName = place!.name
-            destinationViewController.image = place?.image
-            destinationViewController.image2 = place?.image2
-            print(place)
+            let viewController = storyboard?.instantiateViewControllerWithIdentifier("ViewController") as! ViewController
+            viewController.image = selectedPlace!.image
+            viewController.image2 = selectedPlace!.image2
 
-        }
+            presentViewController(viewController, animated: true, completion: nil)
+
+//            self.performSegueWithIdentifier("GoToViewController", sender: nil)
+        
     }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "GoToViewController" {
+//            let destinationViewController = segue.destinationViewController as! ViewController
+//            print("hahahahahahaha")
+////            let place = sender as? Place
+//            destinationViewController.image = selectedPlace!.image
+//            destinationViewController.image2 = selectedPlace!.image2
+//            
+//
+//
+//        }
+//    }
     @IBAction func backToMapViewController(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
 

@@ -65,7 +65,9 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBAction func tapView(sender: AnyObject) {
         self.view.endEditing(true)
     }
-    
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
     
     /*
     // MARK: - Navigation

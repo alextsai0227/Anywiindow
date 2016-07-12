@@ -24,6 +24,8 @@
 		0348EB431D239EE3008E29DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0348EB411D239EE3008E29DA /* LaunchScreen.storyboard */; };
 		0348EB4B1D2434D8008E29DA /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348EB4A1D2434D8008E29DA /* CollectionViewCell.swift */; };
 		03A1BA5B1D334D9E0066D669 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A1BA5A1D334D9E0066D669 /* CoreLocation.framework */; };
+		03A1BAAC1D349A9F0066D669 /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1BAAB1D349A9F0066D669 /* CityViewController.swift */; };
+		03A1BAAE1D349BA90066D669 /* WindowCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1BAAD1D349BA90066D669 /* WindowCollectionViewCell.swift */; };
 		03C349271D2CE87C003ED562 /* SearchBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C349261D2CE87C003ED562 /* SearchBarTableViewController.swift */; };
 		03C3492A1D2CE95B003ED562 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C349291D2CE95B003ED562 /* Place.swift */; };
 		C7A4B393B4255259CBB21528 /* Pods_Timer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A602BBA1A324CC6431A0FFC7 /* Pods_Timer.framework */; };
@@ -49,6 +51,8 @@
 		0348EB441D239EE3008E29DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0348EB4A1D2434D8008E29DA /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		03A1BA5A1D334D9E0066D669 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		03A1BAAB1D349A9F0066D669 /* CityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
+		03A1BAAD1D349BA90066D669 /* WindowCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowCollectionViewCell.swift; sourceTree = "<group>"; };
 		03C349261D2CE87C003ED562 /* SearchBarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarTableViewController.swift; sourceTree = "<group>"; };
 		03C349291D2CE95B003ED562 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		2D55471866DC454E93DADB0F /* Pods-Timer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Timer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Timer/Pods-Timer.release.xcconfig"; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 		0346506D1D30F1B300B72DD9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				03A1BAAD1D349BA90066D669 /* WindowCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -133,6 +138,7 @@
 				03C349261D2CE87C003ED562 /* SearchBarTableViewController.swift */,
 				034650591D2E6ED100B72DD9 /* MapViewController.swift */,
 				0346506B1D30F17A00B72DD9 /* LoginViewController.swift */,
+				03A1BAAB1D349A9F0066D669 /* CityViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -303,6 +309,8 @@
 				03C349271D2CE87C003ED562 /* SearchBarTableViewController.swift in Sources */,
 				0346505D1D2E797E00B72DD9 /* Image+Extension.swift in Sources */,
 				0346506C1D30F17A00B72DD9 /* LoginViewController.swift in Sources */,
+				03A1BAAC1D349A9F0066D669 /* CityViewController.swift in Sources */,
+				03A1BAAE1D349BA90066D669 /* WindowCollectionViewCell.swift in Sources */,
 				0348EB4B1D2434D8008E29DA /* CollectionViewCell.swift in Sources */,
 				03C3492A1D2CE95B003ED562 /* Place.swift in Sources */,
 				0346505A1D2E6ED100B72DD9 /* MapViewController.swift in Sources */,

@@ -30,6 +30,7 @@ class ViewController: UIViewController{
     var imageArrayAdd: Array<String> = []
     let avPlayerViewController = AVPlayerViewController()
     var avMoviePlayer: AVPlayer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         var error: NSError?
@@ -65,6 +66,7 @@ class ViewController: UIViewController{
             self.avMoviePlayer = AVPlayer(URL: url)
             self.avPlayerViewController.player = self.avMoviePlayer
         }
+
     }
     override func viewWillAppear(animated: Bool) {
         // Append Image for CollectionViewCell
@@ -76,9 +78,11 @@ class ViewController: UIViewController{
             self.avplayer = AVPlayer(URL: url)
         }
         navigationController?.navigationBarHidden = true
-        navigationController?.resignFirstResponder()
+
+//      navigationController?.resignFirstResponder()
 
     }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -94,7 +98,7 @@ class ViewController: UIViewController{
     @IBAction func startCounting(sender: AnyObject)  {
         //Audio Get URL
         if self.avplayer == nil{
-            let audioUrl:NSURL? = NSURL(string: "http://www.youtube-mp3.org/get?video_id=OPf0YbXqDm0&ts_create=1468162151&r=MjIwLjEzMi4yMDQuMjAy&h2=d03afa3b8832216d3f16d155f3aa5bb8&s=161551")
+            let audioUrl:NSURL? = NSURL(string: "http://www.youtube-mp3.org/get?video_id=nSDgHBxUbVQ&ts_create=1468226950&r=NjEuMjE2LjI1Ljky&h2=edc4904cc9d27327efebcf796b91ca2c&s=30257")
             if let url = audioUrl{
                 self.avplayer = AVPlayer(URL: url)
             }
@@ -187,7 +191,7 @@ class ViewController: UIViewController{
     }
     
     @IBAction func goTomap(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)    
+        self.performSegueWithIdentifier("GoToMapView", sender: nil)
     }
     
     @IBAction func logOut(sender: AnyObject) {

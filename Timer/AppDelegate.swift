@@ -22,7 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         FBSDKApplicationDelegate.sharedInstance().application(application,
                                                               didFinishLaunchingWithOptions: launchOptions)
-        
+        FIRAuth.auth()?.addAuthStateDidChangeListener { auth, user in
+            if user == nil {
+                // User is signed in.
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let loginViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("LoginViewController")
+                application.windows.first?.rootViewController = loginViewController
+            }
+        }
 
         return true
     }
