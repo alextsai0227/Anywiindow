@@ -60,8 +60,8 @@ class SearchBarTableViewController: UITableViewController {
     }
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         filteredPlaces = Place.places.filter { place in
-            let categoryMatch = (scope == "All") || (place.category == scope)
-            return  categoryMatch && place.name.lowercaseString.containsString(searchText.lowercaseString)
+//            let categoryMatch = (scope == "All") || (place.category == scope)
+            return  place.name.lowercaseString.containsString(searchText.lowercaseString)
         }
         
         tableView.reloadData()
@@ -70,11 +70,10 @@ class SearchBarTableViewController: UITableViewController {
         print("did select row")
             selectedPlace = Place.places[indexPath.row]
         
-            let viewController = storyboard?.instantiateViewControllerWithIdentifier("ViewController") as! ViewController
-            viewController.image = selectedPlace!.image
-            viewController.image2 = selectedPlace!.image2
+            let cityViewController = storyboard?.instantiateViewControllerWithIdentifier("CityViewController") as! CityViewController
+            cityViewController.place = selectedPlace
 
-            presentViewController(viewController, animated: true, completion: nil)
+            presentViewController(cityViewController, animated: true, completion: nil)
 
 //            self.performSegueWithIdentifier("GoToViewController", sender: nil)
         
@@ -85,7 +84,6 @@ class SearchBarTableViewController: UITableViewController {
 //            print("hahahahahahaha")
 ////            let place = sender as? Place
 //            destinationViewController.image = selectedPlace!.image
-//            destinationViewController.image2 = selectedPlace!.image2
 //            
 //
 //
@@ -144,16 +142,17 @@ class SearchBarTableViewController: UITableViewController {
 }
 extension SearchBarTableViewController: UISearchBarDelegate {
     // MARK: - UISearchBar Delegate
-    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
-
-    }
+//    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+//        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
+//    }
+    
 }
 
 extension SearchBarTableViewController: UISearchResultsUpdating {
     // MARK: - UISearchResultsUpdating Delegate
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
-        filterContentForSearchText(searchController.searchBar.text!, scope: scope)    }
+//        let searchBar = searchController.searchBar
+//        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
 }

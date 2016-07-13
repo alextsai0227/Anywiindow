@@ -29,6 +29,9 @@ class CityViewController: UIViewController,UICollectionViewDataSource,UICollecti
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         
         let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", forIndexPath: indexPath)
@@ -44,11 +47,11 @@ class CityViewController: UIViewController,UICollectionViewDataSource,UICollecti
         return 1
     }
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Place.places.count
+        return (place?.image.count)!
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("WindowCollectionViewCell", forIndexPath: indexPath) as! WindowCollectionViewCell
-        cell.imageView.image = UIImage(named: Place.places[indexPath.row].image)
+        cell.imageView.image = UIImage(named: place!.image[indexPath.row])
         return cell
     }
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -56,13 +59,16 @@ class CityViewController: UIViewController,UICollectionViewDataSource,UICollecti
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowWindow"{
-            let viewcontroller = segue.destinationViewController as! ViewController
-            let selectedCell = sender as? UICollectionViewCell
-            let indexPathDidSelect = self.collectionView?.indexPathForCell(selectedCell!)
-            viewcontroller.image = Place.places[(indexPathDidSelect?.row)!].image
-            viewcontroller.image2 = Place.places[(indexPathDidSelect?.row)!].image2
+            let destinationViewcontroller = segue.destinationViewController as! ViewController
+//            let selectedCell = sender as? UICollectionViewCell
+//            let indexPathDidSelect = self.collectionView?.indexPathForCell(selectedCell!)
+            destinationViewcontroller.place = place
         }
     }
+    @IBAction func backToLastViewController(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

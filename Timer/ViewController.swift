@@ -26,13 +26,14 @@ class ViewController: UIViewController{
     var avplayer: AVPlayer?
     var imageName: String?
     var image: String?
-    var image2: String?
     var imageArrayAdd: Array<String> = []
     let avPlayerViewController = AVPlayerViewController()
     var avMoviePlayer: AVPlayer?
-    
+    var place = Place?()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 背景執行 
         var error: NSError?
         var success: Bool
         do {
@@ -70,8 +71,9 @@ class ViewController: UIViewController{
     }
     override func viewWillAppear(animated: Bool) {
         // Append Image for CollectionViewCell
-        imageArrayAdd.append(image!)
-        imageArrayAdd.append(image2!)
+        for i in 0...1{
+            imageArrayAdd.append(place!.image[i])
+        }
         // Read URL
         let audioUrl:NSURL? = NSURL(string: "http://www.youtube-mp3.org/get?video_id=nSDgHBxUbVQ&ts_create=1468226950&r=NjEuMjE2LjI1Ljky&h2=edc4904cc9d27327efebcf796b91ca2c&s=30257")
         if let url = audioUrl{
@@ -85,6 +87,9 @@ class ViewController: UIViewController{
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
     }
         // Volume
     @IBAction func mute(sender: AnyObject) {
@@ -112,7 +117,7 @@ class ViewController: UIViewController{
         //Audio Did Play
         self.avplayer?.play()
         // 30 Mins
-        secondsCount = 60
+        secondsCount = 10
         //Timeer 開始
         self.setTimer()
         self.startButton.hidden = true
@@ -191,7 +196,7 @@ class ViewController: UIViewController{
     }
     
     @IBAction func goTomap(sender: AnyObject) {
-        self.performSegueWithIdentifier("GoToMapView", sender: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func logOut(sender: AnyObject) {

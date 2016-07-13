@@ -15,21 +15,15 @@ class MapViewController: UIViewController,MKMapViewDelegate{
 
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
-    var places = [["name":"Brisbane", "lat":"-27.3810177", "long":"152.4313083","image":"Brisbane","image2":"Brisbane2"], ["name":"Osaka", "lat":"34.678395", "long":"135.4600445","image":"Osaka","image2":"Osaka2"],["name":"SanFrancisco", "lat":"37.7576792", "long":"-122.5078124","image":"SanFrancisco","image2":"SanFrancisco2"],["name":"Taipei", "lat":"25.08534", "long":"121.4228168","image":"Taipei","image2":"Taipei2"],["name":"ShanHai", "lat":"31.2231276", "long":"120.9148739","image":"ShanHai","image2":"ShanHai2"],["name":"Hokkaido", "lat":"43.4349557", "long":"140.5423807","image":"Hokkaido","image2":"Hokkaido2"],["name":"Boracay", "lat":"11.973899", "long":"121.9052984","image":"Boracay","image2":"Boracay2"],["name":"Hawaii", "lat":"21.410097", "long":"157.970329","image":"Hawaii","image2":"Hawaii2"]]
-    var tryplace: [[String : Any]] = [["name":"Brisbane", "lat":"-27.3810177", "long":"152.4313083","image":[UIImage(named:"Taipei"),UIImage(named:"Taipei2")]], ["name":"Osaka", "lat":"34.678395", "long":"135.4600445"]]
+   
     class CustomPointAnnotation: MKPointAnnotation {
         var imageName: String!
-        var image: String!
-        var image2: String!
+        var image: Array<String>!
+        var place = Place?()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapView.delegate = self
-        for trydata in tryplace{
-            print("121321:\(trydata["name"])")
-            
-
-        }
         
         
         for data in Place.places {
@@ -38,8 +32,7 @@ class MapViewController: UIViewController,MKMapViewDelegate{
             annotation.coordinate = CLLocationCoordinate2DMake(Double(data.latitude)!, Double(data.longitude)!)
             annotation.imageName = data.name
             annotation.image = data.image
-            annotation.image2 = data.image2
-
+            annotation.place = data
             self.mapView.addAnnotation(annotation)
         }
 
@@ -101,19 +94,17 @@ class MapViewController: UIViewController,MKMapViewDelegate{
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             if let annotation = view.annotation as? CustomPointAnnotation {
-                self.performSegueWithIdentifier("ViewController", sender: annotation)
+                self.performSegueWithIdentifier("CityViewController", sender: annotation)
                 print("annotation.imageName = \(annotation.imageName)")
             }
         
         }
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ViewController" {
+        if segue.identifier == "CityViewController" {
             let destinationViewController = segue.destinationViewController as! CityViewController
-            let place = sender as? CustomPointAnnotation
-            destinationViewController.imageName = place!.imageName
-            destinationViewController.image = place!.image
-            destinationViewController.image2 = place!.image2
+            let annotation = sender as? CustomPointAnnotation
+            destinationViewController.place = annotation!.place
             
         }
     }
@@ -125,6 +116,10 @@ class MapViewController: UIViewController,MKMapViewDelegate{
     
     }
 
+    @IBAction func tapInfoView(sender: AnyObject) {
+        print("hello")
+        
+    }
     
     
     

@@ -26,6 +26,11 @@
 		03A1BA5B1D334D9E0066D669 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A1BA5A1D334D9E0066D669 /* CoreLocation.framework */; };
 		03A1BAAC1D349A9F0066D669 /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1BAAB1D349A9F0066D669 /* CityViewController.swift */; };
 		03A1BAAE1D349BA90066D669 /* WindowCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1BAAD1D349BA90066D669 /* WindowCollectionViewCell.swift */; };
+		03A1BAB21D34F85F0066D669 /* SearchCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1BAB11D34F85F0066D669 /* SearchCollectionViewController.swift */; };
+		03A1BAB41D3510DE0066D669 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1BAB31D3510DE0066D669 /* SearchCollectionViewCell.swift */; };
+		03A1BAB61D351FF50066D669 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1BAB51D351FF50066D669 /* SearchTableViewController.swift */; };
+		03A1BABB1D3525C20066D669 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1BAB91D3525C20066D669 /* SearchTableViewCell.swift */; };
+		03A1BABC1D3525C20066D669 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A1BABA1D3525C20066D669 /* SearchTableViewCell.xib */; };
 		03C349271D2CE87C003ED562 /* SearchBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C349261D2CE87C003ED562 /* SearchBarTableViewController.swift */; };
 		03C3492A1D2CE95B003ED562 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C349291D2CE95B003ED562 /* Place.swift */; };
 		C7A4B393B4255259CBB21528 /* Pods_Timer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A602BBA1A324CC6431A0FFC7 /* Pods_Timer.framework */; };
@@ -53,6 +58,11 @@
 		03A1BA5A1D334D9E0066D669 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		03A1BAAB1D349A9F0066D669 /* CityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
 		03A1BAAD1D349BA90066D669 /* WindowCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowCollectionViewCell.swift; sourceTree = "<group>"; };
+		03A1BAB11D34F85F0066D669 /* SearchCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewController.swift; sourceTree = "<group>"; };
+		03A1BAB31D3510DE0066D669 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		03A1BAB51D351FF50066D669 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		03A1BAB91D3525C20066D669 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		03A1BABA1D3525C20066D669 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 		03C349261D2CE87C003ED562 /* SearchBarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarTableViewController.swift; sourceTree = "<group>"; };
 		03C349291D2CE95B003ED562 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		2D55471866DC454E93DADB0F /* Pods-Timer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Timer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Timer/Pods-Timer.release.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +101,10 @@
 			isa = PBXGroup;
 			children = (
 				03A1BAAD1D349BA90066D669 /* WindowCollectionViewCell.swift */,
+				0348EB4A1D2434D8008E29DA /* CollectionViewCell.swift */,
+				03A1BAB31D3510DE0066D669 /* SearchCollectionViewCell.swift */,
+				03A1BAB91D3525C20066D669 /* SearchTableViewCell.swift */,
+				03A1BABA1D3525C20066D669 /* SearchTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -121,7 +135,6 @@
 				03C349281D2CE8B9003ED562 /* Module */,
 				03A1D6381D2A69AA00959AD4 /* ViewController */,
 				0348EB381D239EE3008E29DA /* AppDelegate.swift */,
-				0348EB4A1D2434D8008E29DA /* CollectionViewCell.swift */,
 				0348EB3C1D239EE3008E29DA /* Main.storyboard */,
 				0348EB3F1D239EE3008E29DA /* Assets.xcassets */,
 				0348EB411D239EE3008E29DA /* LaunchScreen.storyboard */,
@@ -139,6 +152,8 @@
 				034650591D2E6ED100B72DD9 /* MapViewController.swift */,
 				0346506B1D30F17A00B72DD9 /* LoginViewController.swift */,
 				03A1BAAB1D349A9F0066D669 /* CityViewController.swift */,
+				03A1BAB11D34F85F0066D669 /* SearchCollectionViewController.swift */,
+				03A1BAB51D351FF50066D669 /* SearchTableViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -246,6 +261,7 @@
 				0346507D1D31189000B72DD9 /* GoogleService-Info.plist in Resources */,
 				0348EB401D239EE3008E29DA /* Assets.xcassets in Resources */,
 				0348EB3E1D239EE3008E29DA /* Main.storyboard in Resources */,
+				03A1BABC1D3525C20066D669 /* SearchTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +320,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03A1BAB21D34F85F0066D669 /* SearchCollectionViewController.swift in Sources */,
 				0348EB3B1D239EE3008E29DA /* ViewController.swift in Sources */,
+				03A1BAB41D3510DE0066D669 /* SearchCollectionViewCell.swift in Sources */,
 				0348EB391D239EE3008E29DA /* AppDelegate.swift in Sources */,
 				03C349271D2CE87C003ED562 /* SearchBarTableViewController.swift in Sources */,
 				0346505D1D2E797E00B72DD9 /* Image+Extension.swift in Sources */,
@@ -312,8 +330,10 @@
 				03A1BAAC1D349A9F0066D669 /* CityViewController.swift in Sources */,
 				03A1BAAE1D349BA90066D669 /* WindowCollectionViewCell.swift in Sources */,
 				0348EB4B1D2434D8008E29DA /* CollectionViewCell.swift in Sources */,
+				03A1BAB61D351FF50066D669 /* SearchTableViewController.swift in Sources */,
 				03C3492A1D2CE95B003ED562 /* Place.swift in Sources */,
 				0346505A1D2E6ED100B72DD9 /* MapViewController.swift in Sources */,
+				03A1BABB1D3525C20066D669 /* SearchTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
