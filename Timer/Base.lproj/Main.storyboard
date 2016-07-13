@@ -353,7 +353,13 @@
                             <outlet property="delegate" destination="Lf0-px-SG2" id="axh-bG-HTw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="UEY-oq-KaU"/>
+                    <navigationItem key="navigationItem" id="UEY-oq-KaU">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="aHk-LS-gUP">
+                            <connections>
+                                <action selector="backToMapView:" destination="Lf0-px-SG2" id="Gvy-5y-JZh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GPR-sB-lXp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

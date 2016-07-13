@@ -147,12 +147,12 @@
 		03A1D6381D2A69AA00959AD4 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				0348EB3A1D239EE3008E29DA /* ViewController.swift */,
+				03A1BAB11D34F85F0066D669 /* SearchCollectionViewController.swift */,
 				03C349261D2CE87C003ED562 /* SearchBarTableViewController.swift */,
+				0348EB3A1D239EE3008E29DA /* ViewController.swift */,
 				034650591D2E6ED100B72DD9 /* MapViewController.swift */,
 				0346506B1D30F17A00B72DD9 /* LoginViewController.swift */,
 				03A1BAAB1D349A9F0066D669 /* CityViewController.swift */,
-				03A1BAB11D34F85F0066D669 /* SearchCollectionViewController.swift */,
 				03A1BAB51D351FF50066D669 /* SearchTableViewController.swift */,
 			);
 			name = ViewController;

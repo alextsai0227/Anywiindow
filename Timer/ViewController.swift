@@ -30,6 +30,7 @@ class ViewController: UIViewController{
     let avPlayerViewController = AVPlayerViewController()
     var avMoviePlayer: AVPlayer?
     var place = Place?()
+    var window = Window?()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,8 +72,8 @@ class ViewController: UIViewController{
     }
     override func viewWillAppear(animated: Bool) {
         // Append Image for CollectionViewCell
-        for i in 0...1{
-            imageArrayAdd.append(place!.image[i])
+        for i in 0...3{
+            imageArrayAdd.append(window!.image[i])
         }
         // Read URL
         let audioUrl:NSURL? = NSURL(string: "http://www.youtube-mp3.org/get?video_id=nSDgHBxUbVQ&ts_create=1468226950&r=NjEuMjE2LjI1Ljky&h2=edc4904cc9d27327efebcf796b91ca2c&s=30257")

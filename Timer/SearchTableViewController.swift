@@ -58,14 +58,14 @@ class SearchTableViewController: UITableViewController {
         } else {
             place = Place.places[indexPath.row]
         }
-        cell.cityImageView.image = UIImage(named: place.name)
-        cell.cityLabel.text = place.name
+        cell.cityImageView.image = UIImage(named: place.city)
+        cell.cityLabel.text = place.city
         return cell
     }
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         filteredPlaces = Place.places.filter { place in
 //            let categoryMatch = (scope == "All") || (place.category == scope)
-            return place.name.lowercaseString.containsString(searchText.lowercaseString)
+            return place.city.lowercaseString.containsString(searchText.lowercaseString)
         }
         
         tableView.reloadData()
@@ -84,10 +84,12 @@ class SearchTableViewController: UITableViewController {
         cityViewController.place = selectedPlace
         
         presentViewController(cityViewController, animated: true, completion: nil)
-        
-       
-        
     }
+    @IBAction func backToMapView(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
     //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     //        if segue.identifier == "GoToViewController" {
     //            let destinationViewController = segue.destinationViewController as! ViewController

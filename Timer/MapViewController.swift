@@ -22,22 +22,25 @@ class MapViewController: UIViewController,MKMapViewDelegate{
         var imageName: String!
         var image: Array<String>!
         var place = Place?()
+//        var window = Window?()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapView.delegate = self
         
         
-        for data in Place.places {
+        for place in Place.places {
+            for data in place.window{
             let annotation = CustomPointAnnotation()
             annotation.title = data.name
             annotation.coordinate = CLLocationCoordinate2DMake(Double(data.latitude)!, Double(data.longitude)!)
             annotation.imageName = data.name
             annotation.image = data.image
-            annotation.place = data
+            annotation.place = place
             self.mapView.addAnnotation(annotation)
+        
+            }
         }
-
     }
     override func viewWillAppear(animated: Bool) {
         self.infoView.hidden = true
@@ -73,7 +76,7 @@ class MapViewController: UIViewController,MKMapViewDelegate{
         annotationView?.canShowCallout = true
         //設定大頭針圖片
 //        annotationView?.image = UIImage(named: annotation.title!!)
-        annotationView?.image = UIImage().imageWithImage(UIImage(named: annotation.title!!)!, scaledToSize: CGSizeMake(44, 44)).circle
+        annotationView?.image = UIImage().imageWithImage(UIImage(named: "Taipei")!, scaledToSize: CGSizeMake(44, 44)).circle
         //讀入圖片，設定成Callout左邊顯示的View
         let starImageView = UIImageView(image: UIImage(named: "Star"))
         annotationView?.leftCalloutAccessoryView = starImageView
@@ -113,6 +116,7 @@ class MapViewController: UIViewController,MKMapViewDelegate{
 //            let annotation = sender as? CustomPointAnnotation
             print("selected\(selectdAnnotation.place)")
             destinationViewController.place = selectdAnnotation.place
+//            destinationViewController.window = selectdAnnotation.window
             
         }
     }

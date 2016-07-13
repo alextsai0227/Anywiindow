@@ -14,7 +14,8 @@ class CityViewController: UIViewController,UICollectionViewDataSource,UICollecti
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     var place = Place?()
-    
+    var window = Window?()
+    var selectedWindow = Window?()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.delegate = self
@@ -47,14 +48,15 @@ class CityViewController: UIViewController,UICollectionViewDataSource,UICollecti
         return 1
     }
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (place?.image.count)!
+        return (place?.window.count)!
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("WindowCollectionViewCell", forIndexPath: indexPath) as! WindowCollectionViewCell
-        cell.imageView.image = UIImage(named: place!.image[indexPath.row])
+        cell.imageView.image = UIImage(named: place!.window[indexPath.row].image[indexPath.row])
         return cell
     }
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        selectedWindow = place?.window[indexPath.row]
         performSegueWithIdentifier("ShowWindow", sender: collectionView.cellForItemAtIndexPath(indexPath))
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -62,7 +64,7 @@ class CityViewController: UIViewController,UICollectionViewDataSource,UICollecti
             let destinationViewcontroller = segue.destinationViewController as! ViewController
 //            let selectedCell = sender as? UICollectionViewCell
 //            let indexPathDidSelect = self.collectionView?.indexPathForCell(selectedCell!)
-            destinationViewcontroller.place = place
+            destinationViewcontroller.window = selectedWindow
         }
     }
     @IBAction func backToLastViewController(sender: AnyObject) {
@@ -70,8 +72,11 @@ class CityViewController: UIViewController,UICollectionViewDataSource,UICollecti
     }
     @IBAction func randomWindow(sender: AnyObject) {
         let viewController = storyboard?.instantiateViewControllerWithIdentifier("ViewController") as! ViewController
-            viewController.place = place
-            presentViewController(viewController, animated: true, completion: nil)
+        let index = Int(arc4random_uniform(UInt32((place?.window.count)!)))
+        viewController.window = place?.window[index]
+        presentViewController(viewController, animated: true, completion: nil)
+
+    
         
     }
     
