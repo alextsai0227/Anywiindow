@@ -261,10 +261,23 @@
                                     <segue destination="pJU-Ez-3V2" kind="show" identifier="ShowSearchTableView" id="dps-hB-YqL"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fxG-ki-Qra">
-                                <rect key="frame" x="0.0" y="532" width="600" height="68"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxG-ki-Qra">
+                                <rect key="frame" x="0.0" y="520" width="600" height="80"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IqX-Z9-dte">
+                                        <rect key="frame" x="8" y="8" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" red="1" green="0.90228585019999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="IqX-Z9-dte" firstAttribute="leading" secondItem="fxG-ki-Qra" secondAttribute="leading" constant="8" id="Ank-fG-ej0"/>
+                                    <constraint firstItem="IqX-Z9-dte" firstAttribute="top" secondItem="fxG-ki-Qra" secondAttribute="top" constant="8" id="L6X-df-Kgt"/>
+                                    <constraint firstAttribute="height" constant="80" id="UDg-QT-vh0"/>
+                                </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="IeT-gU-olD" appends="YES" id="mM3-tn-9ZY"/>
                                 </connections>
@@ -272,21 +285,34 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="25p-yx-pjq" firstAttribute="top" secondItem="fxG-ki-Qra" secondAttribute="bottom" id="Cxn-3f-pMk"/>
                             <constraint firstItem="KlH-GI-jQD" firstAttribute="top" secondItem="iaN-tI-hQo" secondAttribute="bottom" constant="8" id="QFg-1e-NCk"/>
+                            <constraint firstItem="fxG-ki-Qra" firstAttribute="leading" secondItem="VF4-gE-bkh" secondAttribute="leading" id="Xsl-O1-BKG"/>
                             <constraint firstItem="GkF-eL-zqg" firstAttribute="top" secondItem="iaN-tI-hQo" secondAttribute="bottom" constant="-20" id="klb-Rn-yF5"/>
                             <constraint firstItem="GkF-eL-zqg" firstAttribute="leading" secondItem="VF4-gE-bkh" secondAttribute="leading" id="qC7-qh-FTG"/>
                             <constraint firstAttribute="trailing" secondItem="GkF-eL-zqg" secondAttribute="trailing" id="qa9-Ji-ou0"/>
                             <constraint firstAttribute="trailing" secondItem="KlH-GI-jQD" secondAttribute="trailing" constant="20" id="qpd-Ch-txO"/>
+                            <constraint firstAttribute="trailing" secondItem="fxG-ki-Qra" secondAttribute="trailing" id="tOz-1U-uXC"/>
                             <constraint firstItem="25p-yx-pjq" firstAttribute="top" secondItem="GkF-eL-zqg" secondAttribute="bottom" id="uz1-Go-qjM"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="rAb-jP-UNu" appends="YES" id="Q5D-ba-uZi"/>
+                        </connections>
                     </view>
                     <connections>
+                        <outlet property="infoLabel" destination="IqX-Z9-dte" id="Xv2-jN-DpB"/>
+                        <outlet property="infoView" destination="fxG-ki-Qra" id="0hp-xH-vH3"/>
                         <outlet property="mapView" destination="GkF-eL-zqg" id="7ct-ON-XRj"/>
                         <outlet property="searchButton" destination="KlH-GI-jQD" id="LFu-7J-fzQ"/>
                         <segue destination="LcT-Ov-PDz" kind="show" identifier="CityViewController" id="62e-9P-EmZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kky-UA-81O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="rAb-jP-UNu">
+                    <connections>
+                        <action selector="tapMapView:" destination="att-cb-w05" id="sad-G8-Iax"/>
+                    </connections>
+                </tapGestureRecognizer>
                 <tapGestureRecognizer id="IeT-gU-olD">
                     <connections>
                         <action selector="tapInfoView:" destination="att-cb-w05" id="TB5-o4-0ne"/>

@@ -15,7 +15,9 @@ class MapViewController: UIViewController,MKMapViewDelegate{
 
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
-   
+    @IBOutlet weak var infoView: UIView!
+    @IBOutlet weak var infoLabel: UILabel!
+    var selectdAnnotation = CustomPointAnnotation()
     class CustomPointAnnotation: MKPointAnnotation {
         var imageName: String!
         var image: Array<String>!
@@ -37,7 +39,9 @@ class MapViewController: UIViewController,MKMapViewDelegate{
         }
 
     }
-    
+    override func viewWillAppear(animated: Bool) {
+        self.infoView.hidden = true
+    }
     override func viewDidAppear(animated: Bool) {
             self.mapView.showAnnotations(self.mapView.annotations, animated: true)
     }
@@ -67,26 +71,29 @@ class MapViewController: UIViewController,MKMapViewDelegate{
         
         //設定點選可以秀出資訊
         annotationView?.canShowCallout = true
-        
         //設定大頭針圖片
 //        annotationView?.image = UIImage(named: annotation.title!!)
         annotationView?.image = UIImage().imageWithImage(UIImage(named: annotation.title!!)!, scaledToSize: CGSizeMake(44, 44)).circle
         //讀入圖片，設定成Callout左邊顯示的View
         let starImageView = UIImageView(image: UIImage(named: "Star"))
         annotationView?.leftCalloutAccessoryView = starImageView
-        
         //Callout的右邊，設定成按鈕
         let button = UIButton(type: .DetailDisclosure)
         button.addTarget(self, action: #selector(MapViewController.buttonPressed(_:)), forControlEvents: .TouchUpInside)
         annotationView?.rightCalloutAccessoryView = button
-//        annotationView?.layer.cornerRadius = (annotationView?.frame.size.width)!/2
+
         
         //回傳大頭針
         return annotationView
     }
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        print("just pressed button")
-//        self.performSegueWithIdentifier("ViewController", sender: nil)
+        // hide infoView
+        self.infoView.hidden = false
+        if let selectdAnnotation = view.annotation as? CustomPointAnnotation {
+            self.infoLabel.text = selectdAnnotation.imageName
+        }
+            //  把selected的Annotation存下來
+        selectdAnnotation = (view.annotation as? CustomPointAnnotation)!
     }
     func buttonPressed(button:UIButton){
         print("")
@@ -94,8 +101,8 @@ class MapViewController: UIViewController,MKMapViewDelegate{
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             if let annotation = view.annotation as? CustomPointAnnotation {
+                
                 self.performSegueWithIdentifier("CityViewController", sender: annotation)
-                print("annotation.imageName = \(annotation.imageName)")
             }
         
         }
@@ -103,34 +110,29 @@ class MapViewController: UIViewController,MKMapViewDelegate{
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "CityViewController" {
             let destinationViewController = segue.destinationViewController as! CityViewController
-            let annotation = sender as? CustomPointAnnotation
-            destinationViewController.place = annotation!.place
+//            let annotation = sender as? CustomPointAnnotation
+            print("selected\(selectdAnnotation.place)")
+            destinationViewController.place = selectdAnnotation.place
             
         }
     }
     // MARK: - SearchTableView
     @IBAction func presentSearchTableView(sender: AnyObject) {
-//        let searchBarTableViewController = storyboard?.instantiateViewControllerWithIdentifier("SearchBarTableViewController") as! SearchBarTableViewController        
-//        presentViewController(searchBarTableViewController, animated: true, completion: nil)
         self.performSegueWithIdentifier("ShowSearchTableView", sender: searchButton)
-    
+
+        // 用presen的方法到下個controller
+//        let searchBarTableViewController = storyboard?.instantiateViewControllerWithIdentifier("SearchBarTableViewController") as! SearchBarTableViewController
+//        presentViewController(searchBarTableViewController, animated: true, completion: nil)
     }
 
     @IBAction func tapInfoView(sender: AnyObject) {
-        print("hello")
+        self.performSegueWithIdentifier("CityViewController", sender: nil)
+        
+    }
+    @IBAction func tapMapView(sender: AnyObject) {
+        self.infoView.hidden = true
         
     }
     
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
