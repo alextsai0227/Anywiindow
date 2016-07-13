@@ -208,6 +208,13 @@
                                     <action selector="backToLastViewController:" destination="LcT-Ov-PDz" eventType="touchUpInside" id="wWQ-2o-Xuz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pe1-RF-Evf">
+                                <rect key="frame" x="540" y="230" width="40" height="40"/>
+                                <state key="normal" image="windows"/>
+                                <connections>
+                                    <action selector="randomWindow:" destination="LcT-Ov-PDz" eventType="touchUpInside" id="Tkl-FI-g4T"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -215,6 +222,8 @@
                             <constraint firstItem="RMw-Ah-wwF" firstAttribute="top" secondItem="s8D-UL-CSs" secondAttribute="top" id="0S4-6l-GgS"/>
                             <constraint firstItem="ecc-q5-cmv" firstAttribute="top" secondItem="LBi-FB-R67" secondAttribute="bottom" id="C8N-LZ-3dd"/>
                             <constraint firstAttribute="trailing" secondItem="RMw-Ah-wwF" secondAttribute="trailing" id="DsW-CF-vIn"/>
+                            <constraint firstItem="Pe1-RF-Evf" firstAttribute="top" secondItem="EQz-SH-cdU" secondAttribute="bottom" constant="210" id="LWR-Wy-gC0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Pe1-RF-Evf" secondAttribute="trailing" id="SmX-pq-vhT"/>
                             <constraint firstItem="ecc-q5-cmv" firstAttribute="top" secondItem="RMw-Ah-wwF" secondAttribute="bottom" id="dIj-p7-d3e"/>
                             <constraint firstItem="lpk-4G-b6W" firstAttribute="leading" secondItem="s8D-UL-CSs" secondAttribute="leadingMargin" id="giT-MS-zhE"/>
                             <constraint firstItem="LBi-FB-R67" firstAttribute="leading" secondItem="s8D-UL-CSs" secondAttribute="leading" id="mpB-jS-0s1"/>
@@ -713,4 +722,7 @@
             <point key="canvasLocation" x="1065" y="-402"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="windows" width="40" height="40"/>
+    </resources>
 </document>
