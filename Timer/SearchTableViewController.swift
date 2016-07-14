@@ -9,30 +9,30 @@
 import UIKit
 
 class SearchTableViewController: UITableViewController {
+    // MARK: - Property
+    @IBOutlet weak var segment: UISegmentedControl!
     var selectedPlace = Place?()
     var filteredPlaces = [Place]()
     var hotel = [Hotel]()
     let searchController = UISearchController(searchResultsController: nil)
     let searchTableViewCellIdentifier = "SearchTableViewCell"
+    
+    // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.hidden = false
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         definesPresentationContext = true
-        searchController.dimsBackgroundDuringPresentation = false
-
+        searchController.dimsBackgroundDuringPresentation = true
         tableView.tableHeaderView = searchController.searchBar
-
         self.tableView.registerNib(UINib(nibName: searchTableViewCellIdentifier,bundle: nil), forCellReuseIdentifier: searchTableViewCellIdentifier)
-       
-        
-        print("987654\(hotel)")
-        
-        print("searchTableview\(hotel)")
         
     }
-    
+    override func viewWillAppear(animated: Bool) {
+        navigationController?.navigationBar.backItem?.hidesBackButton = true
+        self.navigationItem.setHidesBackButton(true, animated: false)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -91,9 +91,14 @@ class SearchTableViewController: UITableViewController {
         cityViewController.hotel = hotel
         presentViewController(cityViewController, animated: true, completion: nil)
     }
-    @IBAction func backToMapView(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func toMapView(sender: AnyObject) {
+//        let mapViewController = storyboard?.instantiateViewControllerWithIdentifier("MapViewController") as! MapViewController
+//        presentViewController(mapViewController, animated: true, completion: nil)
+        self.performSegueWithIdentifier("MapViewController", sender: nil)
+
+        
     }
+
     
     
     //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

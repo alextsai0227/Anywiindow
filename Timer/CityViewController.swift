@@ -13,6 +13,7 @@ class CityViewController: UIViewController,UICollectionViewDataSource,UICollecti
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var backButton: UIButton!
     var place = Place?()
     var window = Window?()
     var selectedWindow = Window?()
@@ -28,6 +29,7 @@ class CityViewController: UIViewController,UICollectionViewDataSource,UICollecti
             self.imageView.image = UIImage(named: (place?.city)!)
         }
         print("city:\(hotel)")
+        
     }
     override func viewWillAppear(animated: Bool) {
         navigationController?.navigationBar.hidden = true
@@ -64,7 +66,9 @@ class CityViewController: UIViewController,UICollectionViewDataSource,UICollecti
     }
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         selectedWindow = place?.window[indexPath.row]
-        performSegueWithIdentifier("ShowWindow", sender: collectionView.cellForItemAtIndexPath(indexPath))
+        let viewController = storyboard?.instantiateViewControllerWithIdentifier("ViewController") as! ViewController
+        viewController.window = selectedWindow
+        presentViewController(viewController, animated: true, completion: nil)
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowWindow"{

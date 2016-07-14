@@ -238,10 +238,10 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="lpk-4G-b6W" id="4Lj-cI-2W4"/>
                         <outlet property="collectionView" destination="C2a-T0-0JH" id="ox2-SS-yQ6"/>
                         <outlet property="collectionViewFlowLayout" destination="P7D-te-MCn" id="i21-dp-NSL"/>
                         <outlet property="imageView" destination="RMw-Ah-wwF" id="x6u-Em-QtM"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="ShowWindow" id="iv8-9j-hPJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OPk-bu-pGO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -260,17 +260,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="GkF-eL-zqg">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="GkF-eL-zqg">
+                                <rect key="frame" x="0.0" y="-1" width="600" height="601"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KlH-GI-jQD">
-                                <rect key="frame" x="532" y="28" width="48" height="30"/>
-                                <state key="normal" title="Search"/>
-                                <connections>
-                                    <action selector="presentSearchTableView:" destination="att-cb-w05" eventType="touchUpInside" id="gBa-QK-kkV"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxG-ki-Qra">
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxG-ki-Qra">
                                 <rect key="frame" x="0.0" y="520" width="600" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IqX-Z9-dte">
@@ -279,13 +272,21 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5個工作地點" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXC-lN-7Ov">
+                                        <rect key="frame" x="8" y="51" width="96" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.90228585019999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
+                                    <constraint firstItem="BXC-lN-7Ov" firstAttribute="leading" secondItem="fxG-ki-Qra" secondAttribute="leading" constant="8" id="1A1-as-Skf"/>
                                     <constraint firstItem="IqX-Z9-dte" firstAttribute="leading" secondItem="fxG-ki-Qra" secondAttribute="leading" constant="8" id="Ank-fG-ej0"/>
                                     <constraint firstItem="IqX-Z9-dte" firstAttribute="top" secondItem="fxG-ki-Qra" secondAttribute="top" constant="8" id="L6X-df-Kgt"/>
                                     <constraint firstAttribute="height" constant="80" id="UDg-QT-vh0"/>
+                                    <constraint firstAttribute="bottom" secondItem="BXC-lN-7Ov" secondAttribute="bottom" constant="8" id="z5g-3H-r4u"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="IeT-gU-olD" appends="YES" id="mM3-tn-9ZY"/>
@@ -295,12 +296,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="25p-yx-pjq" firstAttribute="top" secondItem="fxG-ki-Qra" secondAttribute="bottom" id="Cxn-3f-pMk"/>
-                            <constraint firstItem="KlH-GI-jQD" firstAttribute="top" secondItem="iaN-tI-hQo" secondAttribute="bottom" constant="8" id="QFg-1e-NCk"/>
                             <constraint firstItem="fxG-ki-Qra" firstAttribute="leading" secondItem="VF4-gE-bkh" secondAttribute="leading" id="Xsl-O1-BKG"/>
-                            <constraint firstItem="GkF-eL-zqg" firstAttribute="top" secondItem="iaN-tI-hQo" secondAttribute="bottom" constant="-20" id="klb-Rn-yF5"/>
+                            <constraint firstItem="GkF-eL-zqg" firstAttribute="top" secondItem="iaN-tI-hQo" secondAttribute="bottom" constant="-65" id="klb-Rn-yF5"/>
                             <constraint firstItem="GkF-eL-zqg" firstAttribute="leading" secondItem="VF4-gE-bkh" secondAttribute="leading" id="qC7-qh-FTG"/>
                             <constraint firstAttribute="trailing" secondItem="GkF-eL-zqg" secondAttribute="trailing" id="qa9-Ji-ou0"/>
-                            <constraint firstAttribute="trailing" secondItem="KlH-GI-jQD" secondAttribute="trailing" constant="20" id="qpd-Ch-txO"/>
                             <constraint firstAttribute="trailing" secondItem="fxG-ki-Qra" secondAttribute="trailing" id="tOz-1U-uXC"/>
                             <constraint firstItem="25p-yx-pjq" firstAttribute="top" secondItem="GkF-eL-zqg" secondAttribute="bottom" id="uz1-Go-qjM"/>
                         </constraints>
@@ -308,13 +307,33 @@
                             <outletCollection property="gestureRecognizers" destination="rAb-jP-UNu" appends="YES" id="Q5D-ba-uZi"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="2nd-2m-RRC"/>
+                    <navigationItem key="navigationItem" id="2nd-2m-RRC">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="pdT-LS-ITp">
+                            <rect key="frame" x="225" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Map"/>
+                                <segment title="Picture"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentChangeView:" destination="att-cb-w05" eventType="valueChanged" id="WDJ-Jk-4Qv"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="7UT-sI-W3y">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JhT-g9-U5c">
+                                <rect key="frame" x="540" y="2" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="infoLabel" destination="IqX-Z9-dte" id="Xv2-jN-DpB"/>
                         <outlet property="infoView" destination="fxG-ki-Qra" id="0hp-xH-vH3"/>
                         <outlet property="mapView" destination="GkF-eL-zqg" id="7ct-ON-XRj"/>
-                        <outlet property="searchButton" destination="KlH-GI-jQD" id="LFu-7J-fzQ"/>
-                        <segue destination="LcT-Ov-PDz" kind="show" identifier="CityViewController" id="62e-9P-EmZ"/>
+                        <outlet property="profileButton" destination="JhT-g9-U5c" id="qtX-Zu-7hn"/>
+                        <outlet property="profileImage" destination="7UT-sI-W3y" id="kmI-be-CzG"/>
+                        <outlet property="segment" destination="pdT-LS-ITp" id="CFQ-YQ-u5j"/>
                         <segue destination="Lf0-px-SG2" kind="show" identifier="ShowSearchTableView" id="b4z-Qe-eSI"/>
                     </connections>
                 </viewController>
@@ -355,11 +374,28 @@
                             <outlet property="delegate" destination="Lf0-px-SG2" id="axh-bG-HTw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="UEY-oq-KaU"/>
+                    <navigationItem key="navigationItem" id="UEY-oq-KaU">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" id="534-4a-qa3">
+                            <rect key="frame" x="225" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Map"/>
+                                <segment title="Picture"/>
+                            </segments>
+                            <connections>
+                                <action selector="toMapView:" destination="Lf0-px-SG2" eventType="valueChanged" id="rHp-Wc-apb"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="segment" destination="534-4a-qa3" id="hwK-2s-UAj"/>
+                        <segue destination="att-cb-w05" kind="show" identifier="MapViewController" id="WcW-Lh-4mP"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GPR-sB-lXp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2015" y="-425"/>
+            <point key="canvasLocation" x="2051" y="-417"/>
         </scene>
         <!--Search Bar Table View Controller-->
         <scene sceneID="eSA-DA-FXP">
@@ -409,7 +445,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5r7-6G-gm3">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5r7-6G-gm3">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="JKj-K8-jYB">
                                     <size key="itemSize" width="599" height="599"/>
@@ -419,7 +455,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="aSZ-oq-0gF" customClass="CollectionViewCell" customModule="Timer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="22" width="600" height="600"/>
+                                        <rect key="frame" x="0.0" y="-10" width="600" height="600"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -465,8 +501,7 @@
                                 <rect key="frame" x="0.0" y="20" width="34" height="30"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
-                                    <action selector="goTomap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6pA-E0-ttc"/>
-                                    <segue destination="TfH-Ek-Wha" kind="show" identifier="GoToMapView" id="CWi-cp-eJI"/>
+                                    <action selector="goBack:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dji-jJ-VKm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfU-EC-aa2">
@@ -727,4 +762,7 @@
     <resources>
         <image name="windows" width="40" height="40"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="gEf-Yk-FdM"/>
+    </inferredMetricsTieBreakers>
 </document>

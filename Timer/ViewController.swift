@@ -194,7 +194,7 @@ class ViewController: UIViewController{
         print("\(NSDate.timeIntervalSinceReferenceDate())")
     }
     
-    @IBAction func goTomap(sender: AnyObject) {
+    @IBAction func goBack(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

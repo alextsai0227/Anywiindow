@@ -13,21 +13,45 @@ import AVKit
 import Alamofire
 import SwiftyJSON
 import SDWebImage
+import FBSDKCoreKit
+import FBSDKLoginKit
 class MapViewController: UIViewController,MKMapViewDelegate{
-    var hotelArray = [Hotel]()
+///////////////////////////////變數///////////////////////////////////////////
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var segment: UISegmentedControl!
+    @IBOutlet weak var profileButton: UIButton!
+    @IBOutlet weak var profileImage: UIBarButtonItem!
+    
+    var hotelArray = [Hotel]()
     var selectdAnnotation = CustomPointAnnotation()
     class CustomPointAnnotation: MKPointAnnotation {
         var imageName: String!
         var image: Array<String>!
         var place = Place?()
-//        var window = Window?()
+        var window = Window?()
     }
+///////////////////////////////以下Function///////////////////////////////////
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.profileButton.imageView?.layer.cornerRadius = 20
+        
+        let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, email, picture.type(large)"])
+
+        request.startWithCompletionHandler({ (connection, result, error) in
+            let info = result as! NSDictionary
+            if let imageURL = info.valueForKey("picture")?.valueForKey("data")?.valueForKey("url") as? String {
+//                self.profileButton.setImageWithURL(NSURL(string: imageURL), forState: .Normal)
+                self.profileButton.sd_setImageWithURL(NSURL(string: imageURL), forState: .Normal, placeholderImage: nil)
+                
+            }
+        })
+        
+        
+        
+        
         let urlString: String = "http://data.taipei/opendata/datalist/apiAccess"
         Alamofire.request(.GET, urlString, parameters: ["scope": "resourceAquire","rid": "6f4e0b9b-8cb1-4b1d-a5c4-febd90f62469","limit": "3","offset": "0"]).responseJSON{
             response in
@@ -55,6 +79,7 @@ class MapViewController: UIViewController,MKMapViewDelegate{
                     print("anno\(annotation)")
                 }
             }
+
         }
         // mapview load annotation
         self.mapView.delegate = self
@@ -78,8 +103,7 @@ class MapViewController: UIViewController,MKMapViewDelegate{
     }
     override func viewWillAppear(animated: Bool) {
         self.infoView.hidden = true
-        navigationController?.navigationBar.hidden = true
-
+        self.navigationItem.setHidesBackButton(true, animated: false)
     }
     override func viewDidAppear(animated: Bool) {
             self.mapView.showAnnotations(self.mapView.annotations, animated: true)
@@ -140,7 +164,11 @@ class MapViewController: UIViewController,MKMapViewDelegate{
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             if let annotation = view.annotation as? CustomPointAnnotation {
-                self.performSegueWithIdentifier("CityViewController", sender: annotation)
+                let cityViewController = storyboard?.instantiateViewControllerWithIdentifier("CityViewController") as! CityViewController
+                cityViewController.place = selectdAnnotation.place
+                cityViewController.hotel = hotelArray
+                
+                presentViewController(cityViewController, animated: true, completion: nil)
                 print("hotelarray:\(hotelArray)")
                 
             }
@@ -171,12 +199,27 @@ class MapViewController: UIViewController,MKMapViewDelegate{
     }
 
     @IBAction func tapInfoView(sender: AnyObject) {
-        self.performSegueWithIdentifier("CityViewController", sender: nil)
-        
+//        self.performSegueWithIdentifier("CityViewController", sender: nil)
+        let cityViewController = storyboard?.instantiateViewControllerWithIdentifier("CityViewController") as! CityViewController
+        cityViewController.place = selectdAnnotation.place
+        cityViewController.hotel = hotelArray
+
+        presentViewController(cityViewController, animated: true, completion: nil)
     }
     @IBAction func tapMapView(sender: AnyObject) {
         self.infoView.hidden = true
         
+    }
+      // MARK: - SegmentControl
+    
+    @IBAction func segmentChangeView(sender: AnyObject) {
+        if self.segment.selectedSegmentIndex == 0{
+            self.performSegueWithIdentifier("MapViewController", sender: nil)
+        }else{
+            self.performSegueWithIdentifier("ShowSearchTableView", sender: nil)
+            self.navigationController?.navigationBar.translucent = true
+
+        }
     }
     
 
