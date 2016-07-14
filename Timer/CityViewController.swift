@@ -18,6 +18,7 @@ class CityViewController: UIViewController,UICollectionViewDataSource,UICollecti
     var selectedWindow = Window?()
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         let spacingWidth = Float(10)
@@ -28,7 +29,10 @@ class CityViewController: UIViewController,UICollectionViewDataSource,UICollecti
         }
         print("city:\(hotel)")
     }
+    override func viewWillAppear(animated: Bool) {
+        navigationController?.navigationBar.hidden = true
 
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

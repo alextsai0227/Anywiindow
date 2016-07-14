@@ -33,8 +33,8 @@ class ViewController: UIViewController{
     var window = Window?()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // 背景執行 
+
+        // 背景執行
         var error: NSError?
         var success: Bool
         do {
@@ -81,8 +81,6 @@ class ViewController: UIViewController{
             self.avplayer = AVPlayer(URL: url)
         }
         navigationController?.navigationBarHidden = true
-
-//      navigationController?.resignFirstResponder()
 
     }
 

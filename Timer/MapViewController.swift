@@ -28,7 +28,6 @@ class MapViewController: UIViewController,MKMapViewDelegate{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let urlString: String = "http://data.taipei/opendata/datalist/apiAccess"
         Alamofire.request(.GET, urlString, parameters: ["scope": "resourceAquire","rid": "6f4e0b9b-8cb1-4b1d-a5c4-febd90f62469","limit": "3","offset": "0"]).responseJSON{
             response in
@@ -79,6 +78,8 @@ class MapViewController: UIViewController,MKMapViewDelegate{
     }
     override func viewWillAppear(animated: Bool) {
         self.infoView.hidden = true
+        navigationController?.navigationBar.hidden = true
+
     }
     override func viewDidAppear(animated: Bool) {
             self.mapView.showAnnotations(self.mapView.annotations, animated: true)
@@ -153,10 +154,9 @@ class MapViewController: UIViewController,MKMapViewDelegate{
             destinationViewController.hotel = hotelArray
         }
         if segue.identifier == "ShowSearchTableView"{
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let searchtableViewController = mainStoryboard.instantiateViewControllerWithIdentifier("SearchTableViewController") as! SearchTableViewController
-            searchtableViewController.hotel = hotelArray
-            print("12345\(searchtableViewController.hotel)")
+            let destinationViewController = segue.destinationViewController as! SearchTableViewController
+            destinationViewController.hotel = hotelArray
+            print("12345\(destinationViewController.hotel)")
             print("5432\(hotelArray)")
         }
     }

@@ -16,7 +16,7 @@ class SearchTableViewController: UITableViewController {
     let searchTableViewCellIdentifier = "SearchTableViewCell"
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.navigationBar.hidden = false
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         definesPresentationContext = true
