@@ -10,9 +10,11 @@ import UIKit
 import MapKit
 import AVFoundation
 import AVKit
-
+import Alamofire
+import SwiftyJSON
+import SDWebImage
 class MapViewController: UIViewController,MKMapViewDelegate{
-
+    var hotelArray = [Hotel]()
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var infoView: UIView!
@@ -26,8 +28,37 @@ class MapViewController: UIViewController,MKMapViewDelegate{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.mapView.delegate = self
         
+        let urlString: String = "http://data.taipei/opendata/datalist/apiAccess"
+        Alamofire.request(.GET, urlString, parameters: ["scope": "resourceAquire","rid": "6f4e0b9b-8cb1-4b1d-a5c4-febd90f62469","limit": "3","offset": "0"]).responseJSON{
+            response in
+            if let data = response.result.value{
+                let json = JSON(data)
+                let hotelList = json["result"]["results"].arrayValue
+                
+                for hotel in hotelList{
+                    let hotels = Hotel()
+                    hotels.latitude = hotel["latitude"].stringValue
+                    hotels.name = hotel["stitle"].stringValue
+                    hotels.longtitude = hotel["longitude"].stringValue
+                    self.hotelArray.append(hotels)
+                    
+                    print(hotels.latitude)
+                    print("long:\(hotels.longtitude)")
+                    print("12345\(self.hotelArray[0].latitude)")
+                }
+                for hotel in self.hotelArray{
+                    let annotation = CustomPointAnnotation()
+                    annotation.title = hotel.name
+                    annotation.coordinate = CLLocationCoordinate2DMake(Double(hotel.latitude!)!, Double(hotel.longtitude!)!)
+                    annotation.imageName = hotel.name
+                    self.mapView.addAnnotation(annotation)
+                    print("anno\(annotation)")
+                }
+            }
+        }
+        // mapview load annotation
+        self.mapView.delegate = self
         
         for place in Place.places {
             for data in place.window{
@@ -41,6 +72,10 @@ class MapViewController: UIViewController,MKMapViewDelegate{
         
             }
         }
+        
+        
+        
+        
     }
     override func viewWillAppear(animated: Bool) {
         self.infoView.hidden = true
@@ -104,8 +139,9 @@ class MapViewController: UIViewController,MKMapViewDelegate{
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             if let annotation = view.annotation as? CustomPointAnnotation {
-                
                 self.performSegueWithIdentifier("CityViewController", sender: annotation)
+                print("hotelarray:\(hotelArray)")
+                
             }
         
         }
@@ -113,16 +149,21 @@ class MapViewController: UIViewController,MKMapViewDelegate{
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "CityViewController" {
             let destinationViewController = segue.destinationViewController as! CityViewController
-//            let annotation = sender as? CustomPointAnnotation
-            print("selected\(selectdAnnotation.place)")
             destinationViewController.place = selectdAnnotation.place
-//            destinationViewController.window = selectdAnnotation.window
-            
+            destinationViewController.hotel = hotelArray
+        }
+        if segue.identifier == "ShowSearchTableView"{
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let searchtableViewController = mainStoryboard.instantiateViewControllerWithIdentifier("SearchTableViewController") as! SearchTableViewController
+            searchtableViewController.hotel = hotelArray
+            print("12345\(searchtableViewController.hotel)")
+            print("5432\(hotelArray)")
         }
     }
     // MARK: - SearchTableView
     @IBAction func presentSearchTableView(sender: AnyObject) {
         self.performSegueWithIdentifier("ShowSearchTableView", sender: searchButton)
+        
 
         // 用presen的方法到下個controller
 //        let searchBarTableViewController = storyboard?.instantiateViewControllerWithIdentifier("SearchBarTableViewController") as! SearchBarTableViewController
@@ -139,4 +180,9 @@ class MapViewController: UIViewController,MKMapViewDelegate{
     }
     
 
+}
+class Hotel{
+    var name: String?
+    var latitude: String?
+    var longtitude: String?
 }

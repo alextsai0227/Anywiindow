@@ -11,10 +11,12 @@ import UIKit
 class SearchTableViewController: UITableViewController {
     var selectedPlace = Place?()
     var filteredPlaces = [Place]()
+    var hotel = [Hotel]()
     let searchController = UISearchController(searchResultsController: nil)
     let searchTableViewCellIdentifier = "SearchTableViewCell"
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         definesPresentationContext = true
@@ -23,7 +25,11 @@ class SearchTableViewController: UITableViewController {
         tableView.tableHeaderView = searchController.searchBar
 
         self.tableView.registerNib(UINib(nibName: searchTableViewCellIdentifier,bundle: nil), forCellReuseIdentifier: searchTableViewCellIdentifier)
+       
         
+        print("987654\(hotel)")
+        
+        print("searchTableview\(hotel)")
         
     }
     
@@ -82,7 +88,7 @@ class SearchTableViewController: UITableViewController {
         
         let cityViewController = storyboard?.instantiateViewControllerWithIdentifier("CityViewController") as! CityViewController
         cityViewController.place = selectedPlace
-        
+        cityViewController.hotel = hotel
         presentViewController(cityViewController, animated: true, completion: nil)
     }
     @IBAction func backToMapView(sender: AnyObject) {

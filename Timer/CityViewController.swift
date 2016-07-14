@@ -9,7 +9,7 @@
 import UIKit
 
 class CityViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
-
+    var hotel = [Hotel]()
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
@@ -23,7 +23,10 @@ class CityViewController: UIViewController,UICollectionViewDataSource,UICollecti
         let spacingWidth = Float(10)
         let width = (Float(UIScreen.mainScreen().bounds.width) - spacingWidth * Float(2 + 1)) / 2
         self.collectionViewFlowLayout.itemSize = CGSize(width: CGFloat(width), height: CGFloat(width))
-        // Do any additional setup after loading the view.
+        if place?.city != nil{
+            self.imageView.image = UIImage(named: (place?.city)!)
+        }
+        print("city:\(hotel)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,7 +42,7 @@ class CityViewController: UIViewController,UICollectionViewDataSource,UICollecti
         header.backgroundColor = UIColor.whiteColor()
         let citylabel = header.viewWithTag(1) as? UILabel
         let descriptionLabel = header.viewWithTag(2) as? UILabel
-        citylabel?.text = "Taipei,Taiwan"
+        citylabel?.text = hotel[0].name
         descriptionLabel?.text = "39 have work in the city"
         
         return header

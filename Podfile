@@ -10,4 +10,5 @@ pod 'Firebase/Database'
 pod 'SwiftyJSON'
 pod 'Alamofire'
 pod 'Firebase/Auth'
+pod 'SDWebImage'
 end

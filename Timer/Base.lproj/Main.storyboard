@@ -173,13 +173,13 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taipei,Taiwan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TMi-mh-8Bz">
                                                     <rect key="frame" x="8" y="8" width="102" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="39 have work in the city" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOH-MZ-vg0">
                                                     <rect key="frame" x="8" y="29" width="182" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -222,10 +222,10 @@
                             <constraint firstItem="RMw-Ah-wwF" firstAttribute="top" secondItem="s8D-UL-CSs" secondAttribute="top" id="0S4-6l-GgS"/>
                             <constraint firstItem="ecc-q5-cmv" firstAttribute="top" secondItem="LBi-FB-R67" secondAttribute="bottom" id="C8N-LZ-3dd"/>
                             <constraint firstAttribute="trailing" secondItem="RMw-Ah-wwF" secondAttribute="trailing" id="DsW-CF-vIn"/>
-                            <constraint firstItem="Pe1-RF-Evf" firstAttribute="top" secondItem="EQz-SH-cdU" secondAttribute="bottom" constant="210" id="LWR-Wy-gC0"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Pe1-RF-Evf" secondAttribute="trailing" id="SmX-pq-vhT"/>
+                            <constraint firstItem="Pe1-RF-Evf" firstAttribute="trailing" secondItem="s8D-UL-CSs" secondAttribute="trailingMargin" id="I9T-LV-JQI"/>
                             <constraint firstItem="ecc-q5-cmv" firstAttribute="top" secondItem="RMw-Ah-wwF" secondAttribute="bottom" id="dIj-p7-d3e"/>
                             <constraint firstItem="lpk-4G-b6W" firstAttribute="leading" secondItem="s8D-UL-CSs" secondAttribute="leadingMargin" id="giT-MS-zhE"/>
+                            <constraint firstItem="Pe1-RF-Evf" firstAttribute="top" secondItem="EQz-SH-cdU" secondAttribute="bottom" constant="210" id="iss-KN-IHB"/>
                             <constraint firstItem="LBi-FB-R67" firstAttribute="leading" secondItem="s8D-UL-CSs" secondAttribute="leading" id="mpB-jS-0s1"/>
                             <constraint firstAttribute="trailing" secondItem="LBi-FB-R67" secondAttribute="trailing" id="tuN-V7-zEB"/>
                             <constraint firstItem="RMw-Ah-wwF" firstAttribute="leading" secondItem="s8D-UL-CSs" secondAttribute="leading" id="yr6-S7-FgP"/>
@@ -240,6 +240,7 @@
                     <connections>
                         <outlet property="collectionView" destination="C2a-T0-0JH" id="ox2-SS-yQ6"/>
                         <outlet property="collectionViewFlowLayout" destination="P7D-te-MCn" id="i21-dp-NSL"/>
+                        <outlet property="imageView" destination="RMw-Ah-wwF" id="x6u-Em-QtM"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="ShowWindow" id="iv8-9j-hPJ"/>
                     </connections>
                 </viewController>
@@ -276,7 +277,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IqX-Z9-dte">
                                         <rect key="frame" x="8" y="8" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -333,7 +334,7 @@
         <!--Search Table View Controller-->
         <scene sceneID="QR4-xf-R7Z">
             <objects>
-                <tableViewController id="Lf0-px-SG2" customClass="SearchTableViewController" customModule="Timer" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SearchTableViewController" id="Lf0-px-SG2" customClass="SearchTableViewController" customModule="Timer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="urD-YB-3NL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -466,8 +467,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nqq-u9-h0s">
-                                <rect key="frame" x="0.0" y="20" width="30" height="30"/>
-                                <state key="normal" title="Map"/>
+                                <rect key="frame" x="0.0" y="20" width="34" height="30"/>
+                                <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="goTomap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6pA-E0-ttc"/>
                                     <segue destination="att-cb-w05" kind="show" identifier="GoToMapView" id="CWi-cp-eJI"/>
