@@ -7,37 +7,98 @@
 //
 
 import UIKit
+import MapKit
 
-class SearchTableViewController: UITableViewController {
+class SearchTableViewController: UITableViewController,CLLocationManagerDelegate {
     // MARK: - Property
-    @IBOutlet weak var segment: UISegmentedControl!
+    
+    @IBOutlet weak var menuButton: UIBarButtonItem!
+    
     var selectedPlace = Place?()
     var filteredPlaces = [Place]()
-    var hotel = [Hotel]()
     let searchController = UISearchController(searchResultsController: nil)
     let searchTableViewCellIdentifier = "SearchTableViewCell"
-    
+    let locationmanerger = CLLocationManager()
+    var userLocation = CLLocation()
+    var windowdistances = [CustomWindow]()
+    var selecteddistance = CustomWindow?()
+    class CustomWindow {
+        var distance: Double!
+        var coordinate: CLLocationCoordinate2D!
+
+        
+    }
     // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        if revealViewController() != nil {
+            menuButton.target = revealViewController()
+            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
         navigationController?.navigationBar.hidden = false
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         definesPresentationContext = true
-        searchController.dimsBackgroundDuringPresentation = true
+        searchController.dimsBackgroundDuringPresentation = false
+
         tableView.tableHeaderView = searchController.searchBar
         self.tableView.registerNib(UINib(nibName: searchTableViewCellIdentifier,bundle: nil), forCellReuseIdentifier: searchTableViewCellIdentifier)
-        
+        //取得使用者位置資訊
+        self.locationmanerger.requestWhenInUseAuthorization()
+        self.locationmanerger.delegate = self
+        self.locationmanerger.requestLocation()
+        self.locationmanerger.startUpdatingLocation()
     }
     override func viewWillAppear(animated: Bool) {
         navigationController?.navigationBar.backItem?.hidesBackButton = true
         self.navigationItem.setHidesBackButton(true, animated: false)
     }
+    override func viewDidDisappear(animated: Bool) {
+        self.locationmanerger.stopUpdatingLocation()
+    }
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    // MARK: - 算使用者和Window距離
 
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.locationmanerger.stopUpdatingLocation()
+        
+        if locations.isEmpty == false {
+            userLocation = locations.first!
+        }
+        for place in Place.places {
+            for data in place.window{
+                let window = CustomWindow()
+                window.coordinate = CLLocationCoordinate2DMake(Double(data.latitude)!, Double(data.longitude)!)
+                window.distance = GetDistance_Google(userLocation.coordinate, pointB: window.coordinate)
+                windowdistances.append(window)
+            }
+        }
+    }
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        
+    }
+    func GetDistance_Google(pointA:CLLocationCoordinate2D , pointB:CLLocationCoordinate2D) -> Double
+    {
+        let EARTH_RADIUS:Double = 6378.137;
+        
+        let radlng1:Double = pointA.longitude * M_PI / 180.0;
+        let radlng2:Double = pointB.longitude * M_PI / 180.0;
+        
+        let a:Double = radlng1 - radlng2;
+        let b:Double = (pointA.latitude - pointB.latitude) * M_PI / 180;
+        var s:Double = 2 * asin(sqrt(pow(sin(a/2), 2) + cos(radlng1) * cos(radlng2) * pow(sin(b/2), 2)));
+        
+        s = s * EARTH_RADIUS;
+        s = (round(s * 10000) / 10000);
+        return s;
+    }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 250
     }
@@ -66,6 +127,7 @@ class SearchTableViewController: UITableViewController {
         }
         cell.cityImageView.image = UIImage(named: place.city)
         cell.cityLabel.text = place.city
+        cell.workWindowCount.text = place.country
         return cell
     }
     func filterContentForSearchText(searchText: String, scope: String = "All") {
@@ -79,85 +141,26 @@ class SearchTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("did select row")
         if (searchController.active){
-            selectedPlace = filteredPlaces[indexPath.row]
-        
+            if filteredPlaces.count > 0{
+                selectedPlace = filteredPlaces[indexPath.row]
+                selecteddistance = windowdistances[indexPath.row]
+            }else{
+                selectedPlace = Place.places[indexPath.row]
+                selecteddistance = windowdistances[indexPath.row]
+            }
         }else{
             selectedPlace = Place.places[indexPath.row]
+                selecteddistance = windowdistances[indexPath.row]
         }
         
         
         let cityViewController = storyboard?.instantiateViewControllerWithIdentifier("CityViewController") as! CityViewController
         cityViewController.place = selectedPlace
-        cityViewController.hotel = hotel
+        cityViewController.distance = selecteddistance?.distance
+        print(selecteddistance?.distance)
         presentViewController(cityViewController, animated: true, completion: nil)
     }
-    @IBAction func toMapView(sender: AnyObject) {
-//        let mapViewController = storyboard?.instantiateViewControllerWithIdentifier("MapViewController") as! MapViewController
-//        presentViewController(mapViewController, animated: true, completion: nil)
-        self.performSegueWithIdentifier("MapViewController", sender: nil)
 
-        
-    }
-
-    
-    
-    //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    //        if segue.identifier == "GoToViewController" {
-    //            let destinationViewController = segue.destinationViewController as! ViewController
-    //            print("hahahahahahaha")
-    ////            let place = sender as? Place
-    //            destinationViewController.image = selectedPlace!.image
-    //
-    //
-    //
-    //        }
-    //    }
-
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-     if editingStyle == .Delete {
-     // Delete the row from the data source
-     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-     } else if editingStyle == .Insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 extension SearchTableViewController: UISearchBarDelegate {
     // MARK: - UISearchBar Delegate

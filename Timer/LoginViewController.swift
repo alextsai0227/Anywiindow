@@ -11,7 +11,9 @@ import FBSDKLoginKit
 import FirebaseAuth
 import Firebase
 class LoginViewController: UIViewController,UITextFieldDelegate {
-    @IBOutlet weak var txtUsername: UITextField!
+    
+    @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet weak var nameTxT: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var aviLoadingSpinner: UIActivityIndicatorView!
@@ -21,15 +23,35 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     var loginButton: FBSDKLoginButton! = FBSDKLoginButton()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loginButton.hidden = true
-        self.txtUsername.delegate = self
+        //  textField add left image view
+        txtEmail.leftViewMode = UITextFieldViewMode.Always
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+        let image = UIImage(named: "Email")
+        imageView.image = image
+        txtEmail.leftView = imageView
+        nameTxT.leftViewMode = UITextFieldViewMode.Always
+        let imageView2 = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+        let image2 = UIImage(named: "Name")
+        imageView.image = image2
+        nameTxT.leftView = imageView2
+        txtPassword.leftViewMode = UITextFieldViewMode.Always
+        let imageView3 = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+        let image3 = UIImage(named: "Password")
+        ////////////////////////////////////////
+        imageView.image = image3
+        txtPassword.leftView = imageView3
+        self.loginButton.hidden = false
+        self.txtEmail.delegate = self
         self.txtPassword.delegate = self
+        self.nameTxT.delegate = self
+        self.loginButton.frame.size = CGSize(width: UIScreen.mainScreen().bounds.width/6*5, height: 48)
+        self.fbView.alpha = 0
         FIRAuth.auth()?.addAuthStateDidChangeListener { auth, user in
             if user != nil {
                 // User is signed in.
                 let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let MapViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("MapViewController")
-                self.presentViewController(MapViewController, animated: true, completion: nil)
+                let naviMapViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("SWRevealViewController")
+                self.presentViewController(naviMapViewController, animated: true, completion: nil)
                 
             } else {
                 self.loginButton.readPermissions = ["public_profile", "email", "user_friends"]
@@ -37,14 +59,23 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 self.loginButton.hidden = false
             }
         }
-        // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {
-        self.view.layoutIfNeeded()
+        self.navigationController?.navigationBarHidden = true
         self.loginButton.center = self.fbView.center
         self.view.addSubview(loginButton)
         self.loginButton.hidden = false
+        self.view.layoutIfNeeded()
 
+    }
+    override func viewDidAppear(animated: Bool) {
+        self.loginButton.center = self.fbView.center
+        self.view.addSubview(loginButton)
+        self.loginButton.hidden = false
+        self.view.layoutIfNeeded()
+    }
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -57,17 +88,15 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
-        txtUsername.resignFirstResponder()
+        txtEmail.resignFirstResponder()
         txtPassword.resignFirstResponder()
-        print("我愛你")
+        self.nameTxT.resignFirstResponder()
         return true
     }
     @IBAction func tapView(sender: AnyObject) {
         self.view.endEditing(true)
     }
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.Portrait
-    }
+
     
     /*
     // MARK: - Navigation
@@ -83,8 +112,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
 
 extension LoginViewController: FBSDKLoginButtonDelegate{
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        print("User Log in")
         loginButton.hidden = true
+        aviLoadingSpinner.startAnimating()
         if let error = error{
             print(error.localizedDescription)
             return
@@ -98,9 +127,14 @@ extension LoginViewController: FBSDKLoginButtonDelegate{
         }else{
             
             let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+            let userDefault = NSUserDefaults.standardUserDefaults()
+            userDefault.setObject("\(FBSDKAccessToken.currentAccessToken().tokenString)", forKey: "fbToken")
+            userDefault.synchronize()
+            
             FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
                 if let err = error{
                     print(err.localizedDescription)
+                    print(err)
                     return
                 }
                 let email = user?.email
@@ -111,6 +145,7 @@ extension LoginViewController: FBSDKLoginButtonDelegate{
                 if let pushToken = NSUserDefaults.standardUserDefaults().objectForKey("UserPushToken"){
                     userValue["pushToken"] = "\(pushToken)"
                 }
+                print(userValue)
                 let ref = FIRDatabase.database().reference()
                 let uid = user?.uid
                 ref.child("users").child(uid!).setValue(userValue)
@@ -131,5 +166,14 @@ extension LoginViewController: FBSDKLoginButtonDelegate{
         
     }
     
+    @IBAction func toSignUpVC(sender: AnyObject) {
+//        self.performSegueWithIdentifier("showSignUp", sender: nil)
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "showSignUp"{
+//            let signUpVC = storyboard?.instantiateViewControllerWithIdentifier("SingUpViewController") as! SingUpViewController
+//            
+//        }
+    }
 }
 

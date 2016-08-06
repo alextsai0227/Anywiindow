@@ -11,6 +11,7 @@ import UIKit
 class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var cityImageView: UIImageView!
     @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var workWindowCount: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

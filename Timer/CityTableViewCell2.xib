@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CityTableViewCell2" rowHeight="177" id="KGk-i7-Jjw" customClass="CityTableViewCell2" customModule="AnyWindow" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="431" height="177"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="431" height="176"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1ey-T0-Kiz">
+                        <rect key="frame" x="8" y="8" width="415" height="160"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xYJ-dK-Gwx">
+                                <rect key="frame" x="0.0" y="0.0" width="217" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlaceName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HeQ-oZ-TTO">
+                                        <rect key="frame" x="0.0" y="0.0" width="142" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="工作地點(3)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aum-Zb-c2v">
+                                        <rect key="frame" x="152" y="0.0" width="65" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="QdP-L5-uD1">
+                                <rect key="frame" x="0.0" y="48" width="73" height="20"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="w71-pQ-MKi">
+                                        <rect key="frame" x="0.0" y="0.0" width="14" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="Lxu-ia-i2H"/>
+                                            <constraint firstAttribute="width" constant="14" id="dZz-jF-KEd"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIW-oa-0nP">
+                                        <rect key="frame" x="16" y="0.0" width="57" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hlc-Pg-kQd">
+                                <rect key="frame" x="0.0" y="76" width="88" height="84"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="QdP-L5-uD1" firstAttribute="top" secondItem="1ey-T0-Kiz" secondAttribute="top" constant="48" id="O6i-xF-ajS"/>
+                            <constraint firstItem="Hlc-Pg-kQd" firstAttribute="top" secondItem="QdP-L5-uD1" secondAttribute="bottom" constant="8" id="Wal-3V-37P"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Wal-3V-37P"/>
+                            </mask>
+                        </variation>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="1ey-T0-Kiz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="4Tf-88-CcQ"/>
+                    <constraint firstAttribute="bottom" secondItem="1ey-T0-Kiz" secondAttribute="bottom" constant="8" id="W03-xN-YVm"/>
+                    <constraint firstItem="1ey-T0-Kiz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="uf3-2h-9yV"/>
+                    <constraint firstAttribute="trailing" secondItem="1ey-T0-Kiz" secondAttribute="trailing" constant="8" id="znU-hF-7Sv"/>
+                </constraints>
+            </tableViewCellContentView>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="descriptionlabel" destination="Hlc-Pg-kQd" id="fay-5O-xB0"/>
+                <outlet property="distance" destination="kIW-oa-0nP" id="VZK-JJ-bqG"/>
+                <outlet property="placeName" destination="HeQ-oZ-TTO" id="ViL-EX-C7P"/>
+                <outlet property="windowCount" destination="aum-Zb-c2v" id="48O-db-V5e"/>
+            </connections>
+            <point key="canvasLocation" x="312.5" y="387.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="location" width="14" height="20"/>
+    </resources>
+</document>

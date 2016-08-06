@@ -1,0 +1,6 @@
+framework module MessageComposerView {
+  umbrella header "MessageComposerView-umbrella.h"
+
+  export *
+  module * { export * }
+}

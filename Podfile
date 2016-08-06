@@ -11,4 +11,7 @@ pod 'SwiftyJSON'
 pod 'Alamofire'
 pod 'Firebase/Auth'
 pod 'SDWebImage'
+pod 'MessageComposerView', :git => 'https://github.com/oseparovic/MessageComposerView.git'
+pod 'Firebase/Storage'
+
 end

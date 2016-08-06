@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -18,8 +18,18 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7IM-HC-nYx">
                         <rect key="frame" x="8" y="8" width="366" height="221"/>
                     </imageView>
+                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xb3-Zq-xG0">
+                        <rect key="frame" x="0.0" y="0.0" width="382" height="229"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8e-8V-YvM">
-                        <rect key="frame" x="176" y="189" width="31" height="21"/>
+                        <rect key="frame" x="160" y="98" width="62" height="42"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="workWindowCount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNG-qb-JpO">
+                        <rect key="frame" x="119" y="148" width="145" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -28,15 +38,28 @@
                 <constraints>
                     <constraint firstItem="7IM-HC-nYx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="0eC-EG-0Ul"/>
                     <constraint firstAttribute="trailingMargin" secondItem="7IM-HC-nYx" secondAttribute="trailing" id="3V2-5l-SPt"/>
+                    <constraint firstItem="v8e-8V-YvM" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="665-U1-dgM"/>
+                    <constraint firstItem="Xb3-Zq-xG0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6GO-gy-TYC"/>
+                    <constraint firstAttribute="bottom" secondItem="Xb3-Zq-xG0" secondAttribute="bottom" constant="8" id="8vy-kN-OcZ"/>
+                    <constraint firstItem="Xb3-Zq-xG0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Dcz-ix-UfP"/>
+                    <constraint firstAttribute="trailing" secondItem="Xb3-Zq-xG0" secondAttribute="trailing" id="Fpo-dp-Adz"/>
                     <constraint firstItem="7IM-HC-nYx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="YMg-WE-b1c"/>
+                    <constraint firstItem="fNG-qb-JpO" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="dxV-TH-9QQ"/>
                     <constraint firstAttribute="bottomMargin" secondItem="7IM-HC-nYx" secondAttribute="bottom" id="eeZ-6e-aXW"/>
+                    <constraint firstItem="fNG-qb-JpO" firstAttribute="top" secondItem="v8e-8V-YvM" secondAttribute="bottom" constant="8" id="gmZ-nD-MVd"/>
                     <constraint firstItem="v8e-8V-YvM" firstAttribute="centerX" secondItem="7IM-HC-nYx" secondAttribute="centerX" id="moI-ox-eC5"/>
                     <constraint firstItem="v8e-8V-YvM" firstAttribute="top" secondItem="7IM-HC-nYx" secondAttribute="bottom" constant="-40" id="pi5-Of-ata"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="pi5-Of-ata"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="cityImageView" destination="7IM-HC-nYx" id="Tnt-Wa-xxL"/>
                 <outlet property="cityLabel" destination="v8e-8V-YvM" id="wlX-Ku-vuU"/>
+                <outlet property="workWindowCount" destination="fNG-qb-JpO" id="PkO-Yp-YCM"/>
             </connections>
             <point key="canvasLocation" x="261" y="360"/>
         </tableViewCell>

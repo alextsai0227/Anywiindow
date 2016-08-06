@@ -1,0 +1,22 @@
+{
+  "name": "MessageComposerView",
+  "version": "1.3.4",
+  "summary": "A library to provide an iMessage like input box that sticks to the keyboard.",
+  "homepage": "https://github.com/oseparovic/MessageComposerView",
+  "screenshots": "http://www.thegameengine.org/wp-content/uploads/2013/11/message_composer_quad_1.jpg",
+  "license": "MIT",
+  "authors": {
+    "Oskar Separovic": "oseparovic@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/oseparovic/MessageComposerView.git",
+    "tag": "1.3.4"
+  },
+  "social_media_url": "https://twitter.com/alexgophermix",
+  "requires_arc": true,
+  "source_files": "MessageComposerView/*.{h,m}",
+  "resources": "MessageComposerView/*.{xib}",
+  "platforms": {
+    "ios": "7.0"
+  }
+}
