@@ -38,10 +38,6 @@ class DataViewController: UIViewController {
             userdata.wholeWorkDuratuon = snapshot.value!.objectForKey("wholeWork") as? String
             userdata.workWindowcount = snapshot.value!.objectForKey("windowCount") as? String
             self.userDataArray.append(userdata)
-            print("focusDuration\(userdata.focusDuration)")
-            print("wholeWorkDuratuon\(userdata.wholeWorkDuratuon)")
-            print("workWindowcount\(userdata.workWindowcount)")
-
             self.dateTimeLabel.text = self.userDataArray[self.userDataArray.count-1].dateTime!
             self.focusTime.text = self.userDataArray[self.userDataArray.count-1].focusDuration!
             self.wholeWork.text = self.userDataArray[self.userDataArray.count-1].wholeWorkDuratuon!

@@ -54,8 +54,4 @@ class ReadyPlayViewController: UIViewController {
         self.view.window!.rootViewController?.dismissViewControllerAnimated(false, completion: nil)
 
     }
-    @IBAction func goBackLastVC(sender: AnyObject) {
-        self.dismissViewControllerAnimated(false, completion: nil)
-
-    }
 }
